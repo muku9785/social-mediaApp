@@ -7,7 +7,7 @@ exports.register = async (req, res) => {
 
         let user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({ success: false, message: "User already exists" });
+            return res.status(400).json({ success: false, message: "already exists" });
         }
 
         user = await User.create({
@@ -19,7 +19,6 @@ exports.register = async (req, res) => {
 
         res.status(201).json({ success: true, user: { name: user.name, email: user.email, avatar: user.avatar } });
     } catch (error) {
-        console.error('Error registering user:', error);
         res.status(500).json({ success: false, message: "Server error" });
     }
 };
@@ -29,7 +28,7 @@ exports.login = async (req, res) => {
         const { email, password } = req.body;
         let user = await User.findOne({ email }).select("+password");
         if (!user) {
-            return res.status(400).json({ success: false, message: "User does not exist" });
+            return res.status(400).json({ success: false, message: "not exist" });
         }
 
         const isMatch = await user.matchPassword(password);
@@ -47,7 +46,6 @@ exports.login = async (req, res) => {
 
         res.status(200).json({ success: true, user: { email: user.email, password: user.password } });
     } catch (error) {
-        console.error('Error logging in:', error);
         res.status(500).json({ success: false, message: "Server error" });
     }
 };

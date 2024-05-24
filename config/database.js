@@ -9,18 +9,18 @@ exports.connectDatabase = () => {
 
 
     if (!uri) {
-        console.error('MONGODB_URI environment variable is not defined');
+        console.error('MONGODB_URI is not set');
         process.exit(1);
     }
 
     mongoose.connect(uri)
         .catch((err) => {
-            console.error('Database connection error:', err);
-            process.exit(1); // Exit process with failure
+            console.error(err);
+            process.exit(1);
         });
 
     mongoose.connection.on('connected', () => {
-        console.log('Mongoose connected to ' + uri);
+        console.log('DataB connected to' + uri);
     });
 
 

@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 exports.createPost = async (req, res) => {
     try {
-        console.log("Request user:", req.user); // Debugging log
+        console.log("Requestuser:", req.user); 
         const newPost = {
             caption: req.body.caption,
             image: {
@@ -25,7 +25,6 @@ exports.createPost = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Error creating post:", error); // Debugging log
         res.status(500).json({
             success: false,
             message: error.message
@@ -60,7 +59,6 @@ exports.likeAndUnlikePost = async (req, res) => {
             });
         }
     } catch (error) {
-        console.error("Error liking/unliking post:", error); // Debugging log
         res.status(500).json({
             message: error.message,
             success: false
@@ -73,18 +71,17 @@ exports.getPostOfollowing = async (req, res) => {
         if (!user) {
             return res.status(404).json({
                 success: false,
-                message: "user not found"
+                message: " not found"
             });
         }
         return res.status(200).json({
             success: true,
-            message: "user  found",
+            message: "user found",
             user,
         });
 
         
     } catch (error) {
-        console.error("Error liking/unliking post:", error); // Debugging log
         res.status(500).json({
             message: error.message,
             success: false

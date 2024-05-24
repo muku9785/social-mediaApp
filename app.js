@@ -17,7 +17,7 @@ app.use("/api/", post)
 app.use("/api/", user)
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running oat ${port}`);
   });
 
 module.exports = app;
